@@ -6,11 +6,24 @@ use Bio\Link\LinkRepository;
 
 class LinkService {
 
-    private $linkService;
+    private $linkRepository;
 
-    public function __construct(LinkRepository $linkService)
+    public function __construct(LinkRepository $linkRepository)
     {
-        $this->linkService = $linkService;
+        $this->linkRepository = $linkRepository;
+    }
+
+    /**
+     * List all the links
+     *
+     * @return array
+     */
+    public function listLinks()
+    {
+        return [
+                '1' => 'Link 1',
+                '2' => 'Link 2'
+        ];
     }
    
 }
