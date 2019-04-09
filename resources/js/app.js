@@ -8,6 +8,12 @@
 require('./bootstrap');
 
 window.Vue = require('vue');
+import Vuex from 'vuex'
+import 'es6-promise/auto'
+import router from './router'
+import store from './store'
+
+Vue.use(Vuex)
 
 /**
  * The following block of code may be used to automatically register your
@@ -29,5 +35,7 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    router,
+    store
 });
