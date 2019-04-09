@@ -25,9 +25,30 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   mounted: function mounted() {
+    console.log(Object({"MIX_PUSHER_APP_CLUSTER":"mt1","MIX_PUSHER_APP_KEY":"","NODE_ENV":"development"}).APP_ENV);
     console.log('Component mounted.');
+    this.fetchLinks();
+  },
+  methods: {
+    fetchLinks: function fetchLinks() {
+      var _this = this;
+
+      this.$store.dispatch('FetchLinks').then(function () {
+        _this.loading = false;
+      })["catch"](function (err) {
+        _this.loading = false;
+        console.log(err);
+      });
+    }
+  },
+  computed: {
+    links: function links() {
+      return this.$store.getters.links;
+    }
   }
 });
 
@@ -48,32 +69,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("List Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    This is a list component\n                "
-              )
-            ])
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row justify-content-center" }, [
+      _c("div", { staticClass: "col-md-8" }, [
+        _c("div", { staticClass: "card" }, [
+          _c("div", { staticClass: "card-header" }, [_vm._v("List of Links")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "card-body" }, [
+            _c(
+              "ul",
+              _vm._l(_vm.links, function(link) {
+                return _c("li", [
+                  _c("a", { attrs: { href: link } }, [
+                    _vm._v(" " + _vm._s(link) + " ")
+                  ])
+                ])
+              }),
+              0
+            )
           ])
         ])
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 

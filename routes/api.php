@@ -17,4 +17,15 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('links', 'Api\LinksController@index');
+// Route::get('links', 'Api\LinksController@index');
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::get('links', function () {
+        return [
+            'http://google.com',
+            'http://facebook.com',
+            'http://stackoverflow.com'
+        ];
+    });
+});
+
